@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- ===== 父项目坐标 ===== -->
+    <groupId>com.mall</groupId>
+    <artifactId>mall-project</artifactId>
+    <version>1.0.0</version>
+    <!-- 聚合工程使用 pom 打包 -->
+    <packaging>pom</packaging>
+    <name>mall-project</name>
+    <description>前后端分离微服务商城项目</description>
+
+    <!-- ===== 子模块列表 ===== -->
+    <modules>
+        <module>mall-common</module>
+        <module>mall-gateway</module>
+        <module>mall-auth</module>
+        <module>mall-product</module>
+        <module>mall-cart</module>
+        <module>mall-order</module>
+        <module>mall-logistics</module>
+    </modules>
+
+    <!-- ===== 全局属性：统一管理 JDK 版本和各依赖版本号 ===== -->
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Spring Boot 版本 -->
+        <spring-boot.version>2.7.18</spring-boot.version>
+        <!-- Spring Cloud 版本（与 Spring Boot 2.7.x 对应） -->
+        <spring-cloud.version>2021.0.8</spring-cloud.version>
+        <!-- Spring Cloud Alibaba 版本（与 Spring Cloud 2021.x 对应） -->
+        <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
+
+        <!-- MyBatis-Plus ORM 框架 -->
+        <mybatis-plus.version>3.5.5</mybatis-plus.version>
+        <!-- MySQL 驱动 -->
+        <mysql.version>8.0.33</mysql.version>
+
+        <!-- JWT 相关：jjwt 用于生成和解析 JWT Token -->
+        <jjwt.version>0.11.5</jjwt.version>
+
+        <!-- Kafka 客户端（Spring Boot 内置，此处显式声明版本） -->
+        <kafka.version>3.3.2</kafka.version>
+
+        <!-- RocketMQ Spring Boot Starter -->
+        <rocketmq-spring.version>2.2.3</rocketmq-spring.version>
+
+        <!-- Hutool 工具库 -->
+        <hutool.version>5.8.25</hutool.version>
+
+        <!-- Lombok 简化 POJO 代码 -->
+        <lombok.version>1.18.30</lombok.version>
+    </properties>
+
+    <!-- ===== 依赖版本管理（子模块按需引入，不强制继承） ===== -->
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Spring Boot BOM：统一管理 Spring Boot 生态依赖版本 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Spring Cloud BOM -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Spring Cloud Alibaba BOM：包含 Nacos、Sentinel、RocketMQ 等 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- MyBatis-Plus：增强版 MyBatis，提供 CRUD 基础方法 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <!-- MySQL 驱动 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <!-- JWT API 接口 -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <!-- JWT 实现层 -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!-- JWT Jackson 序列化支持 -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <!-- RocketMQ Spring Boot Starter：简化 RocketMQ 集成 -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq-spring.version}</version>
+            </dependency>
+
+            <!-- Hutool：Java 工具库，提供日期、加密、HTTP 等常用工具 -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <!-- Lombok：通过注解自动生成 getter/setter/构造器等样板代码 -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- 公共模块：项目内部依赖 -->
+            <dependency>
+                <groupId>com.mall</groupId>
+                <artifactId>mall-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- ===== 所有子模块共同继承的依赖 ===== -->
+    <dependencies>
+        <!-- Lombok 所有模块都需要 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- ===== 构建插件管理 ===== -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Spring Boot Maven 插件：用于打可执行 jar -->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>

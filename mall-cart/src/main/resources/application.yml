@@ -1,0 +1,30 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: mall-cart
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 2  # 购物车服务使用 2 号数据库
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+
+# ===== 购物车配置 =====
+cart:
+  # 每个用户购物车最多存放的商品种类数
+  max-item-count: 50
+  # 购物车 Redis 数据过期时间（秒），30 天
+  expire: 2592000
+
+logging:
+  level:
+    com.mall.cart: DEBUG

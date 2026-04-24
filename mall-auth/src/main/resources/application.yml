@@ -1,0 +1,73 @@
+# ===== 服务基础配置 =====
+server:
+  port: 8081  # 认证服务端口
+
+spring:
+  application:
+    name: mall-auth  # 注册到 Nacos 的服务名
+
+  # ===== 数据源配置 =====
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mall_auth?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: root123
+    # HikariCP 连接池配置（Spring Boot 默认连接池）
+    hikari:
+      minimum-idle: 5          # 最小空闲连接数
+      maximum-pool-size: 20    # 最大连接数
+      connection-timeout: 30000  # 连接超时（毫秒）
+      idle-timeout: 600000     # 空闲连接超时（毫秒）
+
+  # ===== Redis 配置 =====
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:                  # Redis 密码（无密码留空）
+    database: 0                # 使用 0 号数据库
+    lettuce:
+      pool:
+        min-idle: 2
+        max-active: 10
+
+  # ===== Nacos 配置 =====
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+
+# ===== MyBatis-Plus 配置 =====
+mybatis-plus:
+  # Mapper XML 文件位置
+  mapper-locations: classpath:mapper/*.xml
+  # 实体类包路径（用于别名映射）
+  type-aliases-package: com.mall.auth.entity
+  configuration:
+    # 开启驼峰命名映射：数据库 user_name -> Java userName
+    map-underscore-to-camel-case: true
+    # 开启 SQL 日志（开发环境调试用，生产环境应关闭）
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      # 逻辑删除字段名
+      logic-delete-field: deleted
+      # 逻辑删除值（1=已删除）
+      logic-delete-value: 1
+      # 逻辑未删除值（0=正常）
+      logic-not-delete-value: 0
+
+# ===== JWT 配置 =====
+jwt:
+  secret: mall-shop-jwt-secret-key-2024-must-be-32-bytes
+  # accessToken 过期时间：2 小时
+  expire: 7200000
+  # refreshToken 过期时间：7 天
+  refresh-expire: 604800000
+
+# ===== 日志配置 =====
+logging:
+  level:
+    com.mall.auth: DEBUG

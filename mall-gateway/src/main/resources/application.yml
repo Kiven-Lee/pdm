@@ -1,0 +1,104 @@
+# ===== 服务基础配置 =====
+server:
+  port: 8080  # 网关统一对外暴露端口
+
+spring:
+  application:
+    name: mall-gateway  # 服务名，注册到 Nacos 后其他服务通过此名称发现
+
+  # ===== Nacos 配置中心 =====
+  config:
+    import: nacos:mall-gateway.yml  # 从 Nacos 拉取配置文件（bootstrap 方式）
+
+  # ===== Nacos 服务注册与发现 =====
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848  # Nacos 服务地址
+        namespace: public             # 命名空间（public = 默认）
+        group: DEFAULT_GROUP          # 分组
+      config:
+        server-addr: 127.0.0.1:8848  # Nacos 配置中心地址
+        file-extension: yml           # 配置文件格式
+
+    # ===== Spring Cloud Gateway 路由配置 =====
+    gateway:
+      # 开启从 Nacos 注册中心自动创建路由（lb://服务名）
+      discovery:
+        locator:
+          enabled: true               # 开启服务发现路由
+          lower-case-service-id: true # 服务名转小写（Nacos 注册的服务名可能大写）
+
+      # 手动配置路由规则（优先级高于自动发现）
+      routes:
+        # ===== 认证服务路由 =====
+        - id: mall-auth               # 路由 ID，唯一标识
+          uri: lb://mall-auth         # lb:// 表示通过负载均衡转发到 mall-auth 服务
+          predicates:
+            - Path=/api/auth/**       # 匹配 /api/auth/ 开头的请求
+          filters:
+            # 去掉路径前缀 /api，转发给下游时路径变为 /auth/**
+            - StripPrefix=1
+
+        # ===== 商品服务路由 =====
+        - id: mall-product
+          uri: lb://mall-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - StripPrefix=1
+
+        # ===== 购物车服务路由 =====
+        - id: mall-cart
+          uri: lb://mall-cart
+          predicates:
+            - Path=/api/cart/**
+          filters:
+            - StripPrefix=1
+
+        # ===== 订单服务路由 =====
+        - id: mall-order
+          uri: lb://mall-order
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - StripPrefix=1
+
+        # ===== 物流服务路由 =====
+        - id: mall-logistics
+          uri: lb://mall-logistics
+          predicates:
+            - Path=/api/logistics/**
+          filters:
+            - StripPrefix=1
+
+      # ===== 全局跨域配置（CORS） =====
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            # 允许的前端域名（生产环境应改为具体域名）
+            allowed-origins: "http://localhost:5173,http://localhost:3000"
+            allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+            allowed-headers: "*"
+            allow-credentials: true
+            max-age: 3600  # 预检请求缓存时间（秒）
+
+# ===== JWT 配置 =====
+jwt:
+  # 签名密钥（至少 32 字节，生产环境应从配置中心或环境变量读取）
+  secret: mall-shop-jwt-secret-key-2024-must-be-32-bytes
+  # accessToken 过期时间：2 小时（毫秒）
+  expire: 7200000
+  # 白名单路径：这些路径不需要 JWT 验证
+  white-list:
+    - /api/auth/login
+    - /api/auth/register
+    - /api/product/list
+    - /api/product/detail/**
+    - /api/product/category/**
+
+# ===== 日志配置 =====
+logging:
+  level:
+    com.mall.gateway: DEBUG           # 网关模块开启 DEBUG 日志，便于排查路由问题
+    org.springframework.cloud.gateway: INFO
