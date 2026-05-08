@@ -1,0 +1,66 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: mall-logistics
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mall_logistics?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: root123
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+
+  # ===== Kafka 消费者配置 =====
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    consumer:
+      # 消费者组 ID（同一组内的消费者共同消费一个 Topic 的消息）
+      group-id: logistics-log-consumer-group
+      # 自动提交偏移量（true=消费后自动提交，false=手动提交）
+      # 生产环境建议 false + 手动提交，保证消息不丢失
+      enable-auto-commit: true
+      # 自动提交间隔（毫秒）
+      auto-commit-interval: 1000
+      # 反序列化方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # 当没有初始偏移量时从最早的消息开始消费
+      auto-offset-reset: earliest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+
+# ===== RocketMQ 配置 =====
+rocketmq:
+  name-server: 127.0.0.1:9876
+  consumer:
+    # 消费者组（与订单服务中定义的 GROUP_LOGISTICS 一致）
+    group: logistics-consumer-group
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.mall.logistics.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+logging:
+  level:
+    com.mall.logistics: DEBUG

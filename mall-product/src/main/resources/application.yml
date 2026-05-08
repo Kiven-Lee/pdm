@@ -1,0 +1,71 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: mall-product
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mall_product?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: root123
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 1  # 商品服务使用 1 号数据库，与认证服务隔离
+
+  # ===== Kafka 配置 =====
+  kafka:
+    # Kafka Broker 地址
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      # 消息序列化：key 和 value 都使用字符串序列化
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # acks=all：等待所有副本确认，保证消息不丢失
+      acks: all
+      # 消息发送失败重试次数
+      retries: 3
+      # 批量发送大小（字节），提高吞吐量
+      batch-size: 16384
+      # 等待时间（毫秒），凑满 batch-size 或等待此时间后发送
+      linger-ms: 5
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.mall.product.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# ===== 商品缓存配置 =====
+product:
+  cache:
+    # 商品详情缓存过期时间（秒），30 分钟
+    detail-expire: 1800
+    # 分类列表缓存过期时间（秒），1 小时
+    category-expire: 3600
+  # 库存分布式锁超时时间（秒）
+  stock-lock-timeout: 10
+
+logging:
+  level:
+    com.mall.product: DEBUG
