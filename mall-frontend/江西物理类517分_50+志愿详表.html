@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026年江西物理类517分·50+志愿详表</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #f0f2f5;
+    color: #333;
+    line-height: 1.7;
+    padding: 16px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .header {
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+    color: #fff;
+    padding: 32px 28px;
+    border-radius: 14px 14px 0 0;
+  }
+  .header h1 { font-size: 24px; margin-bottom: 6px; }
+  .header .sub { font-size: 14px; opacity: 0.85; margin-bottom: 16px; }
+  .header .meta-bar { display: flex; gap: 14px; flex-wrap: wrap; }
+  .meta-chip {
+    background: rgba(255,255,255,0.15);
+    padding: 5px 14px;
+    border-radius: 18px;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .meta-chip strong { font-size: 15px; }
+
+  .body-card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 0 0 14px 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+  }
+
+  .intro-box {
+    background: #ebf8ff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid #3182ce;
+    font-size: 14px;
+    color: #2c5282;
+  }
+  .intro-box strong { color: #1a365d; }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 28px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .section-title .badge {
+    width: 30px; height: 30px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: #fff; font-weight: 700;
+  }
+  .badge-冲 { background: #e53e3e; }
+  .badge-稳 { background: #38a169; }
+  .badge-保 { background: #3182ce; }
+  .badge-专业 { background: #805ad5; }
+
+  .section-desc {
+    font-size: 13px;
+    color: #718096;
+    margin-bottom: 12px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    background: #2d3748;
+    color: #fff;
+    padding: 9px 8px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+  }
+  td {
+    padding: 8px 8px;
+    border-bottom: 1px solid #edf2f7;
+    color: #4a5568;
+    vertical-align: top;
+  }
+  tr:hover td { background: #f7fafc; }
+
+  .row-冲 { border-left: 3px solid #e53e3e; }
+  .row-稳 { border-left: 3px solid #38a169; }
+  .row-保 { border-left: 3px solid #3182ce; }
+
+  .tag {
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-weight: 600;
+    display: inline-block;
+    margin-right: 3px;
+  }
+  .tag-211 { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+  .tag-双一流 { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+  .tag-省重点 { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+  .tag-特色 { background: #ede9fe; color: #5b21b6; border: 1px solid #c4b5fd; }
+  .tag-中外 { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+  .tag-专项 { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+  .tag-省内 { background: #fef9c3; color: #854d0e; border: 1px solid #fde047; }
+
+  .score-cell { font-weight: 700; }
+  .score-冲 { color: #e53e3e; }
+  .score-稳 { color: #38a169; }
+  .score-保 { color: #3182ce; }
+
+  .rank-cell { color: #718096; font-size: 12px; }
+
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 2px solid #e2e8f0;
+    background: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4a5568;
+    transition: all 0.2s;
+  }
+  .filter-btn.active {
+    border-color: #3182ce;
+    background: #3182ce;
+    color: #fff;
+  }
+  .filter-btn:hover { border-color: #3182ce; }
+
+  .stat-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .stat-item {
+    background: #f7fafc;
+    border-radius: 8px;
+    padding: 12px 16px;
+    text-align: center;
+  }
+  .stat-item .num { font-size: 24px; font-weight: 700; color: #2c5282; }
+  .stat-item .label { font-size: 12px; color: #718096; margin-top: 2px; }
+
+  .tip-box {
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #78350f;
+  }
+  .tip-box strong { color: #92400e; }
+
+  .footer {
+    text-align: center;
+    padding: 16px;
+    color: #a0aec0;
+    font-size: 12px;
+  }
+
+  @media (max-width: 700px) {
+    .header h1 { font-size: 18px; }
+    .body-card { padding: 12px; }
+    table { font-size: 12px; }
+    th, td { padding: 6px 4px; }
+    .hide-mobile { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>2026年江西物理类517分 · 50+志愿详表</h1>
+    <p class="sub">纯理科选科（物理+化学+生物）· 男生 · 位次约71,000名</p>
+    <div class="meta-bar">
+      <div class="meta-chip">高考分数 <strong>517</strong></div>
+      <div class="meta-chip">位次 <strong>71,000+</strong></div>
+      <div class="meta-chip">超特控线 <strong>+12分</strong></div>
+      <div class="meta-chip">本科线 <strong>412分</strong></div>
+      <div class="meta-chip">2025同位次分 <strong>≈510</strong></div>
+    </div>
+  </div>
+
+  <div class="body-card">
+
+    <div class="intro-box">
+      <strong>使用说明：</strong>下表基于2025年江西物理类实际投档数据整理。你的2026年位次约71,000名，对应2025年约510分。
+      表中"冲"档（2025年515-525分/位次5.5万-6.7万）为冲刺目标；"稳"档（2025年505-515分/位次6.7万-7.8万）为匹配区间；
+      "保"档（2025年495-505分/位次7.8万-9.0万）为兜底保障。建议按"5冲+8稳+5保"分配18个志愿名额。
+    </div>
+
+    <div class="stat-box">
+      <div class="stat-item"><div class="num">56</div><div class="label">可报志愿总数</div></div>
+      <div class="stat-item"><div class="num">18</div><div class="label">冲刺院校</div></div>
+      <div class="stat-item"><div class="num">20</div><div class="label">稳妥院校</div></div>
+      <div class="stat-item"><div class="num">18</div><div class="label">保底院校</div></div>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterTable('all')">全部 (56)</button>
+      <button class="filter-btn" onclick="filterTable('冲')" style="border-color:#e53e3e;color:#e53e3e">冲刺 (18)</button>
+      <button class="filter-btn" onclick="filterTable('稳')" style="border-color:#38a169;color:#38a169">稳妥 (20)</button>
+      <button class="filter-btn" onclick="filterTable('保')" style="border-color:#3182ce;color:#3182ce">保底 (18)</button>
+    </div>
+
+    <!-- 大表 -->
+    <table id="mainTable">
+      <thead>
+        <tr>
+          <th style="width:30px">#</th>
+          <th style="width:60px">档次</th>
+          <th>院校名称</th>
+          <th class="hide-mobile">专业组</th>
+          <th>选科要求</th>
+          <th>2025分数</th>
+          <th>2025位次</th>
+          <th class="hide-mobile">推荐专业方向</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- ===== 冲刺档 515-525分 ===== -->
+        <tr class="row-冲" data-cat="冲">
+          <td>1</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>华东交通大学 <span class="tag tag-省内">省内</span><span class="tag tag-省重点">省重点</span></td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-冲">525</td>
+          <td class="rank-cell">55,847</td>
+          <td class="hide-mobile">交通工程、土木工程、电气工程</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>2</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>江西师范大学 <span class="tag tag-省内">省内</span></td>
+          <td class="hide-mobile">第50C组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-冲">525</td>
+          <td class="rank-cell">55,787</td>
+          <td class="hide-mobile">计算机科学与技术、软件工程</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>3</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>江西农业大学 <span class="tag tag-省内">省内</span><span class="tag tag-省重点">省重点</span></td>
+          <td class="hide-mobile">第504组</td>
+          <td>物+化学</td>
+          <td class="score-cell score-冲">525</td>
+          <td class="rank-cell">56,157</td>
+          <td class="hide-mobile">食品科学与工程、动物医学、农学</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>4</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>西藏大学 <span class="tag tag-211">211</span><span class="tag tag-双一流">双一流</span></td>
+          <td class="hide-mobile">第503组</td>
+          <td>物+化学</td>
+          <td class="score-cell score-冲">521</td>
+          <td class="rank-cell">60,566</td>
+          <td class="hide-mobile">计算机科学与技术、电子信息工程</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>5</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>三峡大学 <span class="tag tag-特色">水利电力特色</span></td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-冲">520</td>
+          <td class="rank-cell">61,068</td>
+          <td class="hide-mobile">水利水电工程、电气工程及其自动化</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>6</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>江西水利电力大学 <span class="tag tag-省内">省内</span><span class="tag tag-特色">水利电力</span></td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-冲">520</td>
+          <td class="rank-cell">61,082</td>
+          <td class="hide-mobile">水利水电工程、电气工程及其自动化</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>7</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>成都理工大学 <span class="tag tag-双一流">双一流</span></td>
+          <td class="hide-mobile">第50K组</td>
+          <td>物+地理</td>
+          <td class="score-cell score-冲">520</td>
+          <td class="rank-cell">61,296</td>
+          <td class="hide-mobile">地质工程、地球物理、勘查技术与工程</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>8</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>江西中医药大学 <span class="tag tag-省内">省内</span></td>
+          <td class="hide-mobile">第504组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-冲">520</td>
+          <td class="rank-cell">61,383</td>
+          <td class="hide-mobile">中医学、中药学、药学</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>9</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>陕西理工大学</td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-冲">520</td>
+          <td class="rank-cell">61,089</td>
+          <td class="hide-mobile">机械设计制造及其自动化、电气工程</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>10</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>天津城建大学</td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-冲">520</td>
+          <td class="rank-cell">61,350</td>
+          <td class="hide-mobile">土木工程、建筑环境、工程造价</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>11</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>桂林医科大学</td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+化学</td>
+          <td class="score-cell score-冲">520</td>
+          <td class="rank-cell">61,087</td>
+          <td class="hide-mobile">临床医学、口腔医学、预防医学</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>12</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>新疆大学 <span class="tag tag-211">211</span><span class="tag tag-双一流">双一流</span></td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-冲">519</td>
+          <td class="rank-cell">61,760</td>
+          <td class="hide-mobile">计算机科学与技术、机械工程、电气工程</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>13</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>贵州医科大学</td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+化学</td>
+          <td class="score-cell score-冲">520</td>
+          <td class="rank-cell">61,353</td>
+          <td class="hide-mobile">临床医学、麻醉学、医学影像学</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>14</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>山东第一医科大学</td>
+          <td class="hide-mobile">第509组</td>
+          <td>物+化学</td>
+          <td class="score-cell score-冲">520</td>
+          <td class="rank-cell">61,550</td>
+          <td class="hide-mobile">临床医学、口腔医学、药学</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>15</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>江西理工大学 <span class="tag tag-省内">省内</span><span class="tag tag-省重点">省重点</span></td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-冲">517</td>
+          <td class="rank-cell">64,232</td>
+          <td class="hide-mobile">冶金工程、材料科学、软件工程、计算机</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>16</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>江西理工大学 <span class="tag tag-省内">省内</span><span class="tag tag-专项">国家专项</span></td>
+          <td class="hide-mobile">第561组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-冲">517</td>
+          <td class="rank-cell">63,962</td>
+          <td class="hide-mobile">国家专项专业（冶金/材料/机械）</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>17</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>北京体育大学 <span class="tag tag-211">211</span><span class="tag tag-中外">中外合作</span></td>
+          <td class="hide-mobile">第503组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-冲">517</td>
+          <td class="rank-cell">64,610</td>
+          <td class="hide-mobile">休闲体育（学费7.5万/年）</td>
+        </tr>
+        <tr class="row-冲" data-cat="冲">
+          <td>18</td>
+          <td><span style="color:#e53e3e;font-weight:700;">冲</span></td>
+          <td>佛山大学 <span class="tag tag-特色">粤港澳大湾区</span></td>
+          <td class="hide-mobile">第503组</td>
+          <td>物+化学</td>
+          <td class="score-cell score-冲">517</td>
+          <td class="rank-cell">64,232</td>
+          <td class="hide-mobile">机械工程、电子信息、计算机</td>
+        </tr>
+
+        <!-- ===== 稳妥档 505-515分 ===== -->
+        <tr class="row-稳" data-cat="稳">
+          <td>19</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>东华理工大学 <span class="tag tag-省内">省内</span><span class="tag tag-特色">核地质特色</span></td>
+          <td class="hide-mobile">第504组</td>
+          <td>物+化学</td>
+          <td class="score-cell score-稳">516</td>
+          <td class="rank-cell">65,997</td>
+          <td class="hide-mobile">核工程与核技术、测绘工程、勘查技术</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>20</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>东华理工大学 <span class="tag tag-省内">省内</span></td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">514</td>
+          <td class="rank-cell">68,093</td>
+          <td class="hide-mobile">计算机科学与技术、电子信息工程</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>21</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>南昌医学院 <span class="tag tag-省内">省内</span></td>
+          <td class="hide-mobile">第506组</td>
+          <td>物+化学</td>
+          <td class="score-cell score-稳">515</td>
+          <td class="rank-cell">66,343</td>
+          <td class="hide-mobile">临床医学、口腔医学、麻醉学</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>22</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>石家庄铁道大学 <span class="tag tag-特色">铁道特色</span></td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">517</td>
+          <td class="rank-cell">64,232</td>
+          <td class="hide-mobile">土木工程、交通工程、机械工程</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>23</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>南华大学 <span class="tag tag-特色">核/医特色</span></td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">517</td>
+          <td class="rank-cell">64,610</td>
+          <td class="hide-mobile">核工程与核技术、临床医学、安全工程</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>24</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>华北理工大学 <span class="tag tag-特色">冶金/医学</span></td>
+          <td class="hide-mobile">第502组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">517</td>
+          <td class="rank-cell">64,610</td>
+          <td class="hide-mobile">冶金工程、机械工程、临床医学</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>25</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>河南师范大学 <span class="tag tag-省重点">省重点</span></td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+化学</td>
+          <td class="score-cell score-稳">517</td>
+          <td class="rank-cell">64,232</td>
+          <td class="hide-mobile">计算机科学与技术、数学与应用数学</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>26</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>江西科技师范大学 <span class="tag tag-省内">省内</span><span class="tag tag-专项">苏区专项</span></td>
+          <td class="hide-mobile">第581组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">517</td>
+          <td class="rank-cell">64,505</td>
+          <td class="hide-mobile">电子信息工程、计算机科学与技术</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>27</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>江西理工大学 <span class="tag tag-省内">省内</span><span class="tag tag-专项">苏区专项</span></td>
+          <td class="hide-mobile">第581组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">515</td>
+          <td class="rank-cell">66,343</td>
+          <td class="hide-mobile">苏区专项专业（材料/机械/矿类）</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>28</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>江西科技师范大学 <span class="tag tag-省内">省内</span></td>
+          <td class="hide-mobile">第51D组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">513</td>
+          <td class="rank-cell">68,902</td>
+          <td class="hide-mobile">机械设计制造及其自动化、电子信息工程</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>29</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>东华理工大学 <span class="tag tag-省内">省内</span><span class="tag tag-专项">国家专项</span></td>
+          <td class="hide-mobile">第561组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">514</td>
+          <td class="rank-cell">68,093</td>
+          <td class="hide-mobile">国家专项专业（核工程/测绘/地质）</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>30</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>东华理工大学 <span class="tag tag-省内">省内</span><span class="tag tag-专项">苏区专项</span></td>
+          <td class="hide-mobile">第581组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">510</td>
+          <td class="rank-cell">71,920</td>
+          <td class="hide-mobile">苏区专项专业（核工程/测绘/地质）</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>31</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>南昌航空大学 <span class="tag tag-省内">省内</span><span class="tag tag-特色">航空特色</span></td>
+          <td class="hide-mobile">第504组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">507</td>
+          <td class="rank-cell">75,775</td>
+          <td class="hide-mobile">飞行器制造工程、材料成型、测控技术</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>32</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>南昌航空大学 <span class="tag tag-省内">省内</span></td>
+          <td class="hide-mobile">第503组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">523</td>
+          <td class="rank-cell">58,043</td>
+          <td class="hide-mobile">电子信息工程、通信工程、计算机</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>33</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>景德镇陶瓷大学 <span class="tag tag-省内">省内</span><span class="tag tag-特色">材料特色</span></td>
+          <td class="hide-mobile">第502组</td>
+          <td>物+化学</td>
+          <td class="score-cell score-稳">512</td>
+          <td class="rank-cell">73,867</td>
+          <td class="hide-mobile">无机非金属材料工程、电子科学与技术</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>34</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>南昌工程学院 <span class="tag tag-省内">省内</span><span class="tag tag-特色">水利电力</span></td>
+          <td class="hide-mobile">第503组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">507</td>
+          <td class="rank-cell">76,030</td>
+          <td class="hide-mobile">水利水电工程、电气工程、智能电网</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>35</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>赣南师范大学 <span class="tag tag-省内">省内</span><span class="tag tag-省重点">省重点</span></td>
+          <td class="hide-mobile">第514组</td>
+          <td>物+化学</td>
+          <td class="score-cell score-稳">510</td>
+          <td class="rank-cell">72,579</td>
+          <td class="hide-mobile">电子信息工程、计算机科学与技术</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>36</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>江西科技师范大学 <span class="tag tag-省内">省内</span></td>
+          <td class="hide-mobile">第51B组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">507</td>
+          <td class="rank-cell">75,585</td>
+          <td class="hide-mobile">数学与应用数学（师范）、物理学（师范）</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>37</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>兰州交通大学 <span class="tag tag-特色">铁道特色</span></td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">510</td>
+          <td class="rank-cell">72,514</td>
+          <td class="hide-mobile">车辆工程、交通运输、土木工程</td>
+        </tr>
+        <tr class="row-稳" data-cat="稳">
+          <td>38</td>
+          <td><span style="color:#38a169;font-weight:700;">稳</span></td>
+          <td>福建师范大学</td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-稳">510</td>
+          <td class="rank-cell">72,526</td>
+          <td class="hide-mobile">计算机科学与技术、软件工程、数据科学</td>
+        </tr>
+
+        <!-- ===== 保底档 495-505分 ===== -->
+        <tr class="row-保" data-cat="保">
+          <td>39</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>湖南财政经济学院</td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">508</td>
+          <td class="rank-cell">74,535</td>
+          <td class="hide-mobile">会计学、金融学、审计学、财务管理</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>40</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>山东农业大学 <span class="tag tag-省重点">省重点</span></td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">508</td>
+          <td class="rank-cell">74,639</td>
+          <td class="hide-mobile">园艺、食品科学与工程、金融学</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>41</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>河南科技大学</td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">508</td>
+          <td class="rank-cell">74,814</td>
+          <td class="hide-mobile">机械设计制造及其自动化、车辆工程</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>42</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>大连外国语大学</td>
+          <td class="hide-mobile">第502组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">508</td>
+          <td class="rank-cell">74,710</td>
+          <td class="hide-mobile">英语、日语、商务英语、数字经济</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>43</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>山东交通学院 <span class="tag tag-特色">交通特色</span></td>
+          <td class="hide-mobile">第503组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">507</td>
+          <td class="rank-cell">75,121</td>
+          <td class="hide-mobile">车辆工程、电气工程、轨道交通</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>44</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>川北医学院</td>
+          <td class="hide-mobile">第502组</td>
+          <td>物+化学</td>
+          <td class="score-cell score-保">507</td>
+          <td class="rank-cell">75,205</td>
+          <td class="hide-mobile">医学影像学、医学检验技术</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>45</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>西安财经大学</td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">507</td>
+          <td class="rank-cell">75,238</td>
+          <td class="hide-mobile">经济学、金融学、统计学、会计学</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>46</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>山东中医药大学</td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">507</td>
+          <td class="rank-cell">75,254</td>
+          <td class="hide-mobile">中医学、中药学、针灸推拿学</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>47</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>遵义医科大学</td>
+          <td class="hide-mobile">第504组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">507</td>
+          <td class="rank-cell">75,619</td>
+          <td class="hide-mobile">临床医学、麻醉学、口腔医学</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>48</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>内蒙古工业大学 <span class="tag tag-特色">电气/冶金</span></td>
+          <td class="hide-mobile">第50B组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">507</td>
+          <td class="rank-cell">75,570</td>
+          <td class="hide-mobile">电气工程及其自动化、能源与动力工程</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>49</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>中国民用航空飞行学院 <span class="tag tag-特色">民航特色</span></td>
+          <td class="hide-mobile">第502组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">506</td>
+          <td class="rank-cell">76,395</td>
+          <td class="hide-mobile">电气工程、电子信息、交通运输</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>50</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>三峡大学 <span class="tag tag-特色">水利电力</span></td>
+          <td class="hide-mobile">第503组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">506</td>
+          <td class="rank-cell">76,455</td>
+          <td class="hide-mobile">土木工程、工程管理、水利水电</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>51</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>安徽工程大学</td>
+          <td class="hide-mobile">第502组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">506</td>
+          <td class="rank-cell">76,360</td>
+          <td class="hide-mobile">机械电子工程、智能制造、车辆工程</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>52</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>辽宁科技大学 <span class="tag tag-特色">冶金/材料</span></td>
+          <td class="hide-mobile">第503组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">506</td>
+          <td class="rank-cell">76,359</td>
+          <td class="hide-mobile">冶金工程、材料科学与工程、机械设计</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>53</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>东华理工大学 <span class="tag tag-省内">省内</span><span class="tag tag-中外">中外合作</span></td>
+          <td class="hide-mobile">第505组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">498</td>
+          <td class="rank-cell">86,883</td>
+          <td class="hide-mobile">中外合作专业（毕业证相同）</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>54</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>景德镇陶瓷大学 <span class="tag tag-省内">省内</span></td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">497</td>
+          <td class="rank-cell">87,960</td>
+          <td class="hide-mobile">机械设计制造及其自动化、计算机</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>55</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>江西科技师范大学 <span class="tag tag-省内">省内</span></td>
+          <td class="hide-mobile">第516组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">495</td>
+          <td class="rank-cell">90,287</td>
+          <td class="hide-mobile">计算机科学与技术、电子信息工程</td>
+        </tr>
+        <tr class="row-保" data-cat="保">
+          <td>56</td>
+          <td><span style="color:#3182ce;font-weight:700;">保</span></td>
+          <td>江西警察学院 <span class="tag tag-省内">省内</span></td>
+          <td class="hide-mobile">第501组</td>
+          <td>物+不限</td>
+          <td class="score-cell score-保">500</td>
+          <td class="rank-cell">84,178</td>
+          <td class="hide-mobile">网络安全与执法、刑事科学技术</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <!-- 专业推荐 -->
+    <div class="section-title">
+      <div class="badge badge-专业">专</div>
+      纯理科男生·优势专业速查
+    </div>
+    <div class="section-desc">以下专业结合纯理科选科优势、男生就业特点和产业趋势，按就业方向分类推荐</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:40px">序</th>
+          <th>专业名称</th>
+          <th>就业方向</th>
+          <th>参考起薪</th>
+          <th>可报院校（本表内）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>电气工程及其自动化</strong></td><td>国家电网、发电集团、电力设计院</td><td>10-18万/年</td><td>南昌工程学院、三峡大学、江西水利电力大学、内蒙古工业大学</td></tr>
+        <tr><td>2</td><td><strong>计算机科学与技术</strong></td><td>互联网/金融/制造业/考公，就业面最广</td><td>8-15万/年</td><td>江西理工大学、东华理工、赣南师范、河南师范</td></tr>
+        <tr><td>3</td><td><strong>核工程与核技术</strong></td><td>中核集团、中广核等央企定点招聘</td><td>10-15万/年</td><td>东华理工大学、南华大学（两校核特色）</td></tr>
+        <tr><td>4</td><td><strong>水利水电工程</strong></td><td>三峡集团、中国电建等央企</td><td>8-12万/年</td><td>南昌工程学院、三峡大学、江西水利电力大学</td></tr>
+        <tr><td>5</td><td><strong>电子信息工程</strong></td><td>芯片/通信产业，华为中兴等企业</td><td>8-12万/年</td><td>南昌航空大学、景德镇陶瓷大学、佛山大学</td></tr>
+        <tr><td>6</td><td><strong>飞行器制造工程</strong></td><td>中航工业、航天科技等央企</td><td>9-14万/年</td><td>南昌航空大学（航空特色）</td></tr>
+        <tr><td>7</td><td><strong>机械设计制造及其自动化</strong></td><td>智能制造升级，就业稳定</td><td>7-10万/年</td><td>华北理工、陕西理工、河南科技大学</td></tr>
+        <tr><td>8</td><td><strong>临床医学</strong></td><td>需物+化+生（纯理科正好符合）</td><td>规培期8-10万</td><td>桂林医科、山东第一医科、川北医学院、遵义医科</td></tr>
+        <tr><td>9</td><td><strong>土木工程</strong></td><td>中建/中交等央企，交通基建</td><td>7-10万/年</td><td>石家庄铁道大学、天津城建大学、兰州交通大学</td></tr>
+        <tr><td>10</td><td><strong>冶金工程</strong></td><td>宝武钢铁、江西铜业等大型企业</td><td>8-12万/年</td><td>江西理工大学、华北理工大学、辽宁科技大学</td></tr>
+        <tr><td>11</td><td><strong>测绘工程</strong></td><td>自然资源部、测绘院、工程勘察</td><td>7-10万/年</td><td>东华理工大学、成都理工大学</td></tr>
+        <tr><td>12</td><td><strong>中医学/中药学</strong></td><td>中医院、药企，体制内稳定</td><td>6-9万/年</td><td>江西中医药大学、山东中医药大学</td></tr>
+        <tr><td>13</td><td><strong>车辆工程</strong></td><td>比亚迪、一汽等车企，新能源风口</td><td>8-12万/年</td><td>河南科技大学、山东交通学院</td></tr>
+        <tr><td>14</td><td><strong>会计学/审计学</strong></td><td>考公岗位多，企业财务通用</td><td>6-9万/年</td><td>湖南财政经济学院、西安财经大学</td></tr>
+        <tr><td>15</td><td><strong>网络安全与执法</strong></td><td>公安系统定向招录，体制内</td><td>8-12万/年</td><td>江西警察学院</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 策略提示 -->
+    <div class="tip-box">
+      <strong>填报要点：</strong>
+      <br>1. 志愿表建议按 <strong>5冲 + 8稳 + 5保</strong> 分配18个志愿，每个院校可填多个专业组
+      <br>2. <strong>务必勾选"服从专业调剂"</strong>，否则一旦专业分不足即被退档
+      <br>3. 户籍在苏区县/农村的考生，优先关注表中标有 <strong>"专项"</strong> 的专业组，录取分通常更低
+      <br>4. 家庭经济条件允许可考虑 <strong>中外合作</strong> 专业组（如东华理工498分/北体517分），毕业证与普通组一致
+      <br>5. 同一院校不同专业组分数差距大，建议多填几个不同选科要求的专业组增加录取机会
+      <br>6. 志愿填报窗口：<strong>6月30日-7月4日</strong>，仅5天，抓紧比对官方数据定稿
+    </div>
+
+  </div>
+
+  <div class="footer">
+    数据来源：江西省教育考试院2025年本科投档统计表 · 各高校招生网 · 大考100/高考100等平台整理<br>
+    生成时间：2026年7月1日 · 仅供参考，请以江西省教育考试院官方发布为准
+  </div>
+
+</div>
+
+<script>
+function filterTable(cat) {
+  const rows = document.querySelectorAll('#mainTable tbody tr');
+  rows.forEach(row => {
+    if (cat === 'all' || row.dataset.cat === cat) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
